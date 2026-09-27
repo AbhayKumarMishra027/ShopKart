@@ -1,5 +1,6 @@
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import  "./Navbar.css"
 function Navbar() {
     const navigate = useNavigate();
 
@@ -11,9 +12,18 @@ function Navbar() {
         navigate("/login");
     };
     return (
-        <nav>
-            <h2>ShopKart</h2>
-            <button onClick={handleLogout}>Logout</button>
+        <nav className="navbar">
+            <h2 className="navbar-logo">ShopKart</h2>
+
+            <div className="navbar-actions">
+                <button onClick={() => navigate("/products")}>
+                    Products
+                </button>
+
+                <button onClick={handleLogout}>
+                    Logout
+                </button>
+            </div>
         </nav>
     );
 }

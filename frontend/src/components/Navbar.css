@@ -1,0 +1,55 @@
+.navbar {
+    height: 70px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    box-sizing: border-box;
+}
+
+.navbar-logo {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar-actions button {
+    padding: 9px 15px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.navbar-actions button:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 0 18px;
+    }
+
+    .navbar-logo {
+        font-size: 21px;
+    }
+
+    .navbar-actions {
+        gap: 4px;
+    }
+}

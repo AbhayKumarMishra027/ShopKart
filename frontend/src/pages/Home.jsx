@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import './Home.css'
 
 function Home() {
     const [user, setUser] = useState(null)
-    const [loading,setLoading]=useState(true)
-    const navigate=useNavigate();
+    const [loading, setLoading] = useState(true)
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -21,21 +22,25 @@ function Home() {
         fetchUser();
     }, [navigate])
 
-    if(loading){
+    if (loading) {
         return <p>Loading...</p>
     }
 
     return (
-        <div>
+        <div className="home-page">
             <Navbar />
-            <h1>Home</h1>
-            {user && (
-                <div>
-                    <h2>Welcome, {user.fullName}</h2>
-                    <p>Email:{user.email}</p>
-                    <p>Phone:{user.phone}</p>
-                </div>
-            )}
+            <div className="home-content">
+                <h1>Welcome, {user.fullName}</h1>
+
+                <p>
+                    Welcome to ShopKart. Discover products, explore categories,
+                    and find what you're looking for.
+                </p>
+
+                <button onClick={() => navigate("/products")}>
+                    Explore Products
+                </button>
+            </div>
         </div>
     )
 }
