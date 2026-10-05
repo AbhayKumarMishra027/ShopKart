@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./ProductDetails.css"
 
+
 function ProductDetails() {
     const { id } = useParams();
     const [product, setProduct] = useState(null)

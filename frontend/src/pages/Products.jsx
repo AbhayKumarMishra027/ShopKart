@@ -2,6 +2,11 @@ import api from '../services/api'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./Products.css"
+import { useNavigate } from "react-router-dom";
+import { addWishlist, removeWishlist, setWishlist } from '../redux/wishlistSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { addCart, setCart, removeCart } from '../redux/cartSlice';
+import BackButton from "../components/BackButton";
 
 function Products() {
     const [products, setProducts] = useState([]);
@@ -13,6 +18,64 @@ function Products() {
 
     const [debouncedSearch, setDebouncedSearch] = useState("")
 
+    const dispatch = useDispatch();
+    const wishlist = useSelector((state) => state.wishlist)
+    const cart = useSelector((state) => state.cart);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const getCart = async () => {
+            try {
+                const response = await api.get("/cart");
+                dispatch(setCart(response.data.cart));
+            } catch (err) {
+                console.log("Failed to load cart");
+            }
+        };
+
+        getCart();
+    }, [dispatch]);
+
+
+
+    const handleWishlistToggle = async (product) => {
+        const isWishlisted = wishlist.some(
+            (item) => item._id === product._id
+        );
+
+        try {
+            if (isWishlisted) {
+                await api.delete(`/wishlist/${product._id}`);
+                dispatch(removeWishlist(product._id));
+            } else {
+                await api.post(`/wishlist/${product._id}`);
+                dispatch(addWishlist(product));
+            }
+        } catch (err) {
+            console.log("Failed to update wishlist");
+        }
+    };
+    const handleCartToggle = async (product) => {
+        const isInCart = cart.some(
+            (item) => item.product._id === product._id
+        );
+
+        try {
+            if (isInCart) {
+                await api.delete(`/cart/${product._id}`);
+                dispatch(removeCart(product._id));
+            } else {
+                await api.post(`/cart/${product._id}`);
+
+                dispatch(addCart({
+                    product: product,
+                    quantity: 1
+                }));
+            }
+        } catch (err) {
+            console.log("Failed to update cart");
+        }
+    };
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedSearch(search);
@@ -39,13 +102,38 @@ function Products() {
         getProducts();
     }, [debouncedSearch, category])
 
+    useEffect(() => {
+        const getWishlist = async () => {
+            try {
+                const response = await api.get("/wishlist");
+                dispatch(setWishlist(response.data.products));
+            } catch (err) {
+                console.log("Failed to load wishlist");
+            }
+        };
+
+        getWishlist();
+    }, [dispatch]);
 
     return (
         <div className='products-page'>
+            <BackButton />
             <div className='products-header'>
-                <h1>Products</h1>
-                <p className='products-subtitle'>Explore products curated for everyday living</p>
+                <div>
+                    <h1>Products</h1>
+                    <p className='products-subtitle'>Explore products curated for everyday living</p>
+                </div>
+                <div className="products-header-actions">
+                    <button onClick={() => navigate("/wishlist")}>
+                        ❤️ Wishlist
+                    </button>
+
+                    <button onClick={() => navigate("/cart")}>
+                        🛒 Cart
+                    </button>
+                </div>
             </div>
+
             <div className='products-controls'>
                 <input
                     type='text'
@@ -89,7 +177,32 @@ function Products() {
                                 <p>{product.category}</p>
                                 <p>Stock: {product.stock}</p>
                                 <p>Price: {product.price}</p>
-                                <Link to={`/products/${product._id}`}>View Details</Link>
+
+                                <div className="product-card-actions">
+                                    <div className="product-primary-actions">
+
+                                        <button onClick={() => handleWishlistToggle(product)}>
+                                            {wishlist.some((item) => item._id === product._id)
+                                                ? "❤️ Wishlisted"
+                                                : "🤍 Add to wishlist"}
+                                        </button>
+
+
+                                        <button onClick={() => handleCartToggle(product)}>
+                                            {cart.some((item) => item.product._id === product._id)
+                                                ? "✅ In Cart"
+                                                : "🛒 Add to Cart"}
+                                        </button>
+
+                                    </div>
+
+                                    <Link
+                                        className="view-details"
+                                        to={`/products/${product._id}`}
+                                    >
+                                        View Details
+                                    </Link>
+                                </div>
                             </div>
                         ))}
                     </div>

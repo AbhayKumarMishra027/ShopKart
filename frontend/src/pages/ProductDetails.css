@@ -185,3 +185,13 @@
         width: 100%;
     }
 }
+.product-details-container {
+    width: 100%;
+    max-width: 1030px;
+    margin: 0 auto;
+}
+
+.back-button {
+    display: block;
+    margin-bottom: 18px;
+}

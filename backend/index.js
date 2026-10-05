@@ -15,13 +15,17 @@ import productRoutes from './routes/product.routes.js'
 
 import uploadRoutes from "./routes/upload.routes.js"
 
+import wishlistRoutes from "./routes/wishlist.routes.js"
+
+import cartRoutes from './routes/cart.routes.js'
+
 app.use(express.json())
 app.use(cookieParser())
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "http://localhost:5173");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Headers", "Content-Type");
-    res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS");
 
     if (req.method === "OPTIONS") {
         return res.sendStatus(204);
@@ -34,6 +38,8 @@ app.use("/customers",customerRoutes)
 app.use('/products',productRoutes)
 
 app.use('/upload',uploadRoutes)
+app.use('/wishlist',wishlistRoutes)
+app.use('/cart',cartRoutes)
 
 app.get("/",(req,res)=>{
     res.send("hello")

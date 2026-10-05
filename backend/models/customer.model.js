@@ -19,8 +19,25 @@ const customerSchema=new mongoose.Schema({
         type:String,
         required:true,
         unique:true
-    }
-    
+    },
+    wishlist:{
+        type:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Product"
+        }],
+        default:[]
+    },
+
+    cart:[{
+        product:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Product"
+        },
+        quantity:{
+            type:Number,
+            min:1
+        }
+    }]
 },{
     timestamps:true
 })

@@ -1,6 +1,6 @@
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
-import  "./Navbar.css"
+import "./Navbar.css"
 function Navbar() {
     const navigate = useNavigate();
 
@@ -18,6 +18,14 @@ function Navbar() {
             <div className="navbar-actions">
                 <button onClick={() => navigate("/products")}>
                     Products
+                </button>
+
+                <button onClick={() => navigate("/wishlist")}>
+                    ❤️ Wishlist
+                </button>
+
+                <button onClick={() => navigate("/cart")}>
+                    🛒 Cart
                 </button>
 
                 <button onClick={handleLogout}>
