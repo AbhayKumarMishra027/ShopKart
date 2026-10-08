@@ -24,7 +24,10 @@ import orderRoutes from "./routes/order.routes.js";
 app.use(express.json())
 app.use(cookieParser())
 app.use((req, res, next) => {
-    const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:5173";
+    const allowedOrigin =
+        process.env.NODE_ENV === "production"
+            ? "https://shop-kart-two-beta.vercel.app"
+            : "http://localhost:5173";
 
     res.header("Access-Control-Allow-Origin", allowedOrigin);
     res.header("Access-Control-Allow-Credentials", "true");
