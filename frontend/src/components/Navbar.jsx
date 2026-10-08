@@ -16,9 +16,9 @@ function Navbar() {
             <h2 className="navbar-logo">ShopKart</h2>
 
             <div className="navbar-actions">
-                <button onClick={() => navigate("/products")}>
+                {/* <button onClick={() => navigate("/products")}>
                     Products
-                </button>
+                </button> */}
 
                 <button onClick={() => navigate("/wishlist")}>
                     ❤️ Wishlist
@@ -27,6 +27,11 @@ function Navbar() {
                 <button onClick={() => navigate("/cart")}>
                     🛒 Cart
                 </button>
+
+                <button onClick={() => navigate("/orders")}>
+                    📦 Orders
+                </button>
+
 
                 <button onClick={handleLogout}>
                     Logout

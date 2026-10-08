@@ -56,6 +56,23 @@ function Register() {
 
     return (
         <div className='register-container'>
+
+            <svg className="shopkart-watermark" viewBox="0 0 900 300">
+                <defs>
+                    <path
+                        id="shopkart-arc"
+                        d="M 100 220 Q 450 20 800 220"
+                    />
+                </defs>
+
+                <text>
+                    <textPath href="#shopkart-arc" startOffset="50%">
+                        ShopKart
+                    </textPath>
+                </text>
+            </svg>
+
+
             <form onSubmit={handleSubmit} className="register-form">
                 <h1>Register</h1>
                 {error && <p className='error-message'>{error}</p>}

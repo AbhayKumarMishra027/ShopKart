@@ -191,3 +191,33 @@
         font-size: 27px;
     }
 }
+
+.register-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.shopkart-watermark {
+    position: absolute;
+    width: 850px;
+    height: 280px;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.shopkart-watermark text {
+    fill: #243b53;
+    opacity: 0.035;
+    font-size: 170px;
+    font-weight: 700;
+    text-anchor: middle;
+}
+
+/* .register-form {
+    position: relative;
+    z-index: 1;
+} */

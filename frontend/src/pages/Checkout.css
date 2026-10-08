@@ -1,0 +1,414 @@
+
+.checkout-page {
+    min-height: 100vh;
+    background: #f8f7f4;
+    padding: 38px 45px 60px;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.checkout-header {
+    max-width: 1200px;
+    margin: 0 auto 32px;
+}
+
+.checkout-eyebrow {
+    margin: 0 0 8px;
+    color: #c9a227;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.checkout-header h1 {
+    margin: 0;
+    color: #243b53;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+}
+
+.checkout-header p:last-child {
+    margin-top: 10px;
+    color: #667085;
+    font-size: 15px;
+}
+
+
+/* =========================
+   Main Layout
+========================= */
+
+.checkout-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 28px;
+    align-items: start;
+}
+
+
+/* =========================
+   Checkout Cards
+========================= */
+
+.checkout-card,
+.checkout-summary {
+    background: #ffffff;
+    border: 1px solid #e8e5de;
+    border-radius: 14px;
+    box-sizing: border-box;
+}
+
+.checkout-card {
+    padding: 28px;
+}
+
+.checkout-summary {
+    position: sticky;
+    top: 25px;
+    padding: 24px;
+}
+
+
+/* =========================
+   Section Header
+========================= */
+
+.checkout-card-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 28px;
+}
+
+.checkout-step {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: #243b53;
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.checkout-card-header h2 {
+    margin: 0;
+    color: #243b53;
+    font-size: 20px;
+    font-weight: 650;
+}
+
+.checkout-card-header p {
+    margin: 4px 0 0;
+    color: #98a2b3;
+    font-size: 12px;
+}
+
+
+/* =========================
+   Form
+========================= */
+
+.checkout-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 17px;
+}
+
+.checkout-field label {
+    margin: 0;
+
+    color: #344054;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.checkout-field input {
+    width: 100%;
+    height: 44px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d7d9dd;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #172b4d;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.checkout-field input::placeholder {
+    color: #98a2b3;
+}
+
+.checkout-field input:hover {
+    border-color: #b9bec5;
+}
+
+.checkout-field input:focus {
+    border-color: #526d8d;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(36, 59, 83, 0.06);
+}
+
+
+/* City + State */
+
+.checkout-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+
+/* =========================
+   Payment Button
+========================= */
+
+.checkout-pay-button {
+    width: 100%;
+    height: 45px;
+
+    margin-top: 5px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #243b53;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.checkout-pay-button:hover {
+    background: #1b2f43;
+}
+
+.checkout-pay-button:active {
+    background: #142638;
+    transform: translateY(1px);
+}
+
+.checkout-pay-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   Summary
+========================= */
+
+.checkout-summary h2 {
+    color: #243b53;
+}
+
+.checkout-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    color: #667085;
+    font-size: 14px;
+}
+
+.checkout-summary-item strong {
+    color: #243b53;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: right;
+}
+
+.checkout-divider {
+    height: 1px;
+    background: #e8e5de;
+    margin: 20px 0;
+}
+
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-total span {
+    color: #243b53;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.checkout-total strong {
+    color: #243b53;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   Security Box
+========================= */
+
+.checkout-security {
+    display: flex;
+    gap: 11px;
+
+    margin-top: 22px;
+    padding: 14px;
+
+    background: #fafaf8;
+    border: 1px solid #eeeae2;
+    border-radius: 8px;
+}
+
+.checkout-security > span {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.checkout-security strong {
+    display: block;
+    margin-bottom: 3px;
+
+    color: #243b53;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.checkout-security p {
+    margin: 0;
+
+    color: #667085;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   Trust Points
+========================= */
+
+.checkout-trust {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-top: 13px;
+}
+
+.checkout-trust span {
+    color: #8a6f1d;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.checkout-trust p {
+    margin: 0;
+
+    color: #667085;
+    font-size: 11px;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px) {
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary {
+        position: static;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .checkout-page {
+        padding: 28px 16px 45px;
+    }
+
+    .checkout-header h1 {
+        font-size: 30px;
+    }
+
+    .checkout-header p:last-child {
+        font-size: 14px;
+    }
+
+    .checkout-card {
+        padding: 24px 20px;
+    }
+
+    .checkout-summary {
+        padding: 22px 20px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .checkout-page {
+        padding: 25px 15px 40px;
+    }
+
+    .checkout-header {
+        margin-bottom: 25px;
+    }
+
+    .checkout-header h1 {
+        font-size: 28px;
+    }
+
+    .checkout-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .checkout-card-header {
+        margin-bottom: 23px;
+    }
+
+    .checkout-card-header h2 {
+        font-size: 18px;
+    }
+}

@@ -131,6 +131,11 @@ function Products() {
                     <button onClick={() => navigate("/cart")}>
                         🛒 Cart
                     </button>
+                    
+                    <button onClick={() => navigate("/orders")}>
+                        📦 Orders
+                    </button>
+
                 </div>
             </div>
 

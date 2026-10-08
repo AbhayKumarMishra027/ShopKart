@@ -4,10 +4,12 @@ import { setCart, updateCart, removeCart } from "../redux/cartSlice";
 import api from "../services/api";
 import "./Cart.css";
 import BackButton from "../components/BackButton";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getCart = async () => {
@@ -51,8 +53,7 @@ function Cart() {
         0
     );
 
-    const delivery = subtotal > 0 ? 50 : 0;
-    const total = subtotal + delivery;
+    const total = subtotal;
 
     return (
         <div className="cart-page">
@@ -72,8 +73,6 @@ function Cart() {
                 </div>
             ) : (
                 <div className="cart-layout">
-
-                    {/* Cart Items */}
 
                     <div className="cart-items">
 
@@ -154,8 +153,6 @@ function Cart() {
                     </div>
 
 
-                    {/* Billing Summary */}
-
                     <div className="cart-summary">
 
                         <h2>Order Summary</h2>
@@ -165,11 +162,6 @@ function Cart() {
                             <span>₹{subtotal}</span>
                         </div>
 
-                        <div className="summary-row">
-                            <span>Delivery</span>
-                            <span>₹{delivery}</span>
-                        </div>
-
                         <div className="summary-divider"></div>
 
                         <div className="summary-total">
@@ -177,7 +169,7 @@ function Cart() {
                             <span>₹{total}</span>
                         </div>
 
-                        <button className="checkout-button">
+                        <button className="checkout-button" onClick={()=>navigate('/checkout')}>
                             Proceed to Checkout
                         </button>
 

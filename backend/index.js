@@ -19,6 +19,8 @@ import wishlistRoutes from "./routes/wishlist.routes.js"
 
 import cartRoutes from './routes/cart.routes.js'
 
+import orderRoutes from "./routes/order.routes.js";
+
 app.use(express.json())
 app.use(cookieParser())
 app.use((req, res, next) => {
@@ -40,6 +42,7 @@ app.use('/products',productRoutes)
 app.use('/upload',uploadRoutes)
 app.use('/wishlist',wishlistRoutes)
 app.use('/cart',cartRoutes)
+app.use("/orders", orderRoutes);
 
 app.get("/",(req,res)=>{
     res.send("hello")
