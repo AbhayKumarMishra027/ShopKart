@@ -68,7 +68,9 @@ const loginCustomer = async (req, res) => {
         })
     }
     const token = generateToken(customer._id)
-    res.cookie("auth_token", token, { httpOnly: true, secure: false, sameSite: "lax" })
+
+    const isProduction = process.env.NODE_ENV === "production";
+    res.cookie("auth_token", token, { httpOnly: true, secure: isProduction, sameSite:isProduction?"none":"lax" })
 
     const customerData = customer.toObject();
     delete customerData.password;
@@ -90,7 +92,9 @@ const getMe = async (req, res) => {
 }
 
 const logoutCustomer = async (req, res) => {
-    res.clearCookie("auth_token")
+    const isProduction = process.env.NODE_ENV === "production";
+
+    res.clearCookie("auth_token",{httpOnly:true,secure:isProduction,sameSite:isProduction?"none":"lax"})
     return res.status(200).json({
         message: "Logout Successfull"
     })

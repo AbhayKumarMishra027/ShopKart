@@ -1,12 +1,12 @@
 import express from 'express';
-const app=express();
+const app = express();
 
 import cloudinary from "./config/cloudinary.js";
 
 import "dotenv/config"
 import connectDB from './config/db.js';
 
-const port=3000;
+const port = process.env.PORT || 3000;
 
 import customerRoutes from "./routes/customer.routes.js"
 import cookieParser from 'cookie-parser';
@@ -24,7 +24,9 @@ import orderRoutes from "./routes/order.routes.js";
 app.use(express.json())
 app.use(cookieParser())
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+    const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:5173";
+
+    res.header("Access-Control-Allow-Origin", allowedOrigin);
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Headers", "Content-Type");
     res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS");
@@ -36,20 +38,20 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/customers",customerRoutes)
-app.use('/products',productRoutes)
+app.use("/customers", customerRoutes)
+app.use('/products', productRoutes)
 
-app.use('/upload',uploadRoutes)
-app.use('/wishlist',wishlistRoutes)
-app.use('/cart',cartRoutes)
+app.use('/upload', uploadRoutes)
+app.use('/wishlist', wishlistRoutes)
+app.use('/cart', cartRoutes)
 app.use("/orders", orderRoutes);
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     res.send("hello")
 })
 
 connectDB();
 
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log('server Started')
 })
